@@ -6,6 +6,7 @@ from scipy.spatial import distance_matrix
 import csv
 
 FILENAME = '1'
+SMOOTHING = 500
 
 # Read in points
 points = np.loadtxt(f'points/{FILENAME}.txt')
@@ -46,7 +47,7 @@ x_sorted = points[path_indices][:, 0]
 y_sorted = points[path_indices][:, 1]
 
 # Fit spline 
-tck, u = splprep([x_sorted, y_sorted], s=500)
+tck, u = splprep([x_sorted, y_sorted], s=SMOOTHING)
 unew = np.linspace(0, 1, 1000)
 out = splev(unew, tck)
 
