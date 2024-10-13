@@ -5,7 +5,7 @@ from scipy.integrate import simps
 from scipy.spatial import distance_matrix
 import csv
 
-FILENAME = '1'
+FILENAME = '2'
 SMOOTHING = 500
 
 # Read in points
@@ -129,6 +129,11 @@ plt.imshow(img, cmap='gray')
 for i in range(n_points - 1):
     color = 'r' if directions[i] == "right" else 'g' if directions[i] == "left" else 'b'
     plt.plot([x_fine[i], x_fine[i+1]], [y_fine[i], y_fine[i+1]], color)
+
+
+
+# save images to results
+plt.savefig(f'results/{FILENAME}_spline.png')
 
 plt.show()
 
