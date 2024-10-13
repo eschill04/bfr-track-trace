@@ -10,6 +10,7 @@
 
 ## Instructions
 
+* **Run `read_img.py`, then run `draw_spline.py`. Make sure input image is saved in correct location, and constants described below are set correctly.**
 * `FILENAME` corresponds to input image file name in **both** `read_img.py` an `draw_spline.py`.
 * `SMOOTHING` corresponds to smoothing factor for spline approximation in `draw_spline.py`, best around 400 to 500 (but can go down to ~100 for more granularity on larger track)
 * `CLOSE_LOOP` will manually ensure a closed track in `draw_spline.py`, should only be used for the larger track where there exists a closed track to be drawn. 
