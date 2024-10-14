@@ -11,8 +11,10 @@
 ## Instructions
 
 **Run `python3 read_img.py -f <FILENAME>`, then run `python3 draw_spline.py -f <FILENAME>`. Make sure input image has been saved in `images` folder.**
-* `--filename` or `-f` corresponds to input image file name in **both** `read_img.py` an `draw_spline.py`. This field is **mandatory**.
-* *FILENAME is assumed to be a PNG. If image is named `image.png`, `<FILENAME>` should be `image`, and our call will be `python3 read_img.py -f image`.*
+* `--filename` or `-f` corresponds to input image file name. This field is **mandatory**. This file is assumed to be a png. so `<FILENAME>` should not include `.png`.
+* *Example: If the file name is `sample_image.png`, and our calls might be:*
+    * `python3 read_img.py -f sample_image`
+    * `python3 draw_spline.py -f sample_image`
 
 **Optional Arguments For `draw_spline.py`**
 * `--smoothing` corresponds to smoothing factor for spline approximation in `draw_spline.py`. Default is 500 (but can go down to ~100 for more granularity on larger track).
