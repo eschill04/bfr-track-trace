@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 import argparse
 
 def main(filename):
+    filename_no_ext = filename.split('.')[0]
     # Read in image
-    img = cv2.imread(f'images/{filename}.png', cv2.IMREAD_COLOR)
+    img = cv2.imread(f'images/{filename}', cv2.IMREAD_COLOR)
 
     # Filter for red
     lower_red = np.array([0, 0, 200], dtype = "uint8")
@@ -30,7 +31,7 @@ def main(filename):
     points = np.unique(points, axis=0)
 
     # save points to file
-    np.savetxt(f'points/{filename}.txt', points, fmt='%d')
+    np.savetxt(f'points/{filename_no_ext}.txt', points, fmt='%d')
 
 
 if __name__ == "__main__":

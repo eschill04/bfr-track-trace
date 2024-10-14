@@ -105,8 +105,10 @@ def fit_spline(x, y, smoothing, n_segments):
     return x_fine, y_fine, arc_lengths, radii, directions
 
 def main(filename, smoothing, close_loop, n_segments):
+
+    filename_no_ext = filename.split('.')[0]
     # Read in points
-    points = np.loadtxt(f'points/{filename}.txt')
+    points = np.loadtxt(f'points/{filename_no_ext}.txt')
 
     # Sort points
     x_sorted, y_sorted = sort_points(points)
@@ -127,7 +129,7 @@ def main(filename, smoothing, close_loop, n_segments):
             writer.writerow([arc_lengths[i], radii[i], directions[i]])
 
     # Plot image
-    img = plt.imread(f'images/{filename}.png')
+    img = plt.imread(f'images/{filename}')
     plt.imshow(img, cmap='gray')
 
     # Plot based on radii, arc length, and direction
@@ -138,7 +140,7 @@ def main(filename, smoothing, close_loop, n_segments):
     plt.show()
 
     # Save image to results
-    plt.savefig(f'results/{filename}_spline.png')
+    plt.savefig(f'results/{filename_no_ext}_spline.png')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
