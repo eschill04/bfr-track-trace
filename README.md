@@ -11,6 +11,7 @@
 ## Instructions
 Run the following:
 
+    pip3 install -r requirements.txt
     python3 read_img.py -f <IMAGE NAME>
     python3 draw_spline.py -f <IMAGE NAME>
 
