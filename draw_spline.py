@@ -120,7 +120,7 @@ def main(filename, smoothing, close_loop, n_segments):
     x_fine, y_fine, arc_lengths, radii, directions = fit_spline(x_sorted, y_sorted, smoothing, n_segments)
 
     # Write to CSV file
-    with open(f'spline_data/{filename}_spline_data.csv', mode='w', newline='') as file:
+    with open(f'spline_data/{filename_no_ext}_spline_data.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["Arc Length", "Radius of Curvature", "Direction"])
 
