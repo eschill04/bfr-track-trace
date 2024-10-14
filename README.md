@@ -9,10 +9,10 @@
 * See result images in `results` folder.
 
 ## Instructions
+Run the following:
 
-`python3 read_img.py -f <IMAGE NAME>`
-
-`python3 draw_spline.py -f <IMAGE NAME>`
+    python3 read_img.py -f <IMAGE NAME>
+    python3 draw_spline.py -f <IMAGE NAME>
 
 * Make sure the input image has been saved in the `images` folder. 
 * `--filename` or `-f` corresponds to input image file name.
