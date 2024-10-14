@@ -17,6 +17,7 @@ Run the following:
 
 * Make sure the input image has been saved in the `images` folder. 
 * `--filename` or `-f` corresponds to input image file name.
+* See .csv output in `spline_data`, and image output in `results`.
 
 **Optional Arguments For `draw_spline.py`**
 * `--smoothing` corresponds to smoothing factor for spline approximation in `draw_spline.py`. Default is 500 (but can go down to ~100 for more granularity on larger track).
