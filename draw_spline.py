@@ -136,11 +136,10 @@ def main(filename, smoothing, close_loop, n_segments):
     for i in range(n_segments - 1):
         color = 'r' if directions[i] == "right" else 'g' if directions[i] == "left" else 'b'
         plt.plot([x_fine[i], x_fine[i+1]], [y_fine[i], y_fine[i+1]], color)
-
-    plt.show()
-
+    
     # Save image to results
     plt.savefig(f'results/{filename_no_ext}_spline.png')
+    plt.show()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
