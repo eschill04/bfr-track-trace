@@ -38,9 +38,9 @@ def direction_change(theta1, theta2, thresh):
     else:
         return "Straight"
 
-def fit_spline(x, y, n_segments, threshold=0.03):
+def fit_spline(x, y, n_segments, threshold=0.03, smoothing=1e-4):
     # Set smoothing parameter to 0 for exact interpolation
-    tck, u = splprep([x, y], s=0)
+    tck, u = splprep([x, y], s=smoothing)
     u_fine = np.linspace(0, 1, n_segments)
     x_fine, y_fine = splev(u_fine, tck)
     dx_fine, dy_fine = splev(u_fine, tck, der=1)
@@ -65,7 +65,7 @@ def fit_spline(x, y, n_segments, threshold=0.03):
 
     return x_fine, y_fine, arc_lengths, radii, directions
 
-def analyze_track(svg_file, output_csv, scale_factor=1.0, n_segments=1000, threshold=0.03):
+def analyze_track(svg_file, output_csv, scale_factor=1.0, n_segments=1000, threshold=0.03, smoothing=1e-4):
     paths, _ = svg2paths(svg_file)
     points = []
     for path in paths:
@@ -74,7 +74,7 @@ def analyze_track(svg_file, output_csv, scale_factor=1.0, n_segments=1000, thres
             points.append([point.real * scale_factor, point.imag * scale_factor])
 
     points = np.array(points)
-    x_fine, y_fine, arc_lengths, radii, directions = fit_spline(points[:, 0], points[:, 1], n_segments, threshold)
+    x_fine, y_fine, arc_lengths, radii, directions = fit_spline(points[:, 0], points[:, 1], n_segments, threshold, smoothing)
 
     with open(output_csv, 'w', newline='') as file:
         writer = csv.writer(file)
@@ -103,5 +103,6 @@ if __name__ == "__main__":
     parser.add_argument('--scale', type=float, default=1.0, help='Scale factor for SVG coordinates')
     parser.add_argument('--segments', type=int, default=1000, help='Number of segments for analysis')
     parser.add_argument('--threshold', type=float, default=0.03, help='Threshold for direction change')
+    parser.add_argument('--smoothing', type=float, default=1e-4, help='Smoothing factor for spline')
     args = parser.parse_args()
-    analyze_track(args.svg_file, args.output_csv, args.scale, args.segments, args.threshold)
+    analyze_track(args.svg_file, args.output_csv, args.scale, args.segments, args.threshold, args.smoothing)
