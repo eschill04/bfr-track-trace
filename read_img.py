@@ -5,10 +5,32 @@ import numpy as np
 import matplotlib.pyplot as plt
 import argparse
 
+def get_scale(img):
+    # identify grid lines of image, and calculate scale of pixels per square
+    # return scale
+
+    # convert to grayscale
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # get vertical and horizontal edges
+    edges = cv2.Canny(gray, 50, 150, apertureSize=3)
+    lines = cv2.HoughLines(edges, 1, np.pi/180, 200)
+
+    # display edges
+    plt.imshow(lines, cmap='gray')
+
+    # approximate curve of contour as a spline
+    plt.show()
+
+    
+
 def main(filename):
     filename_no_ext = filename.split('.')[0]
     # Read in image
     img = cv2.imread(f'images/{filename}', cv2.IMREAD_COLOR)
+
+    # get scale of image
+    get_scale(img)
 
     # Filter for red
     lower_red = np.array([0, 0, 200], dtype = "uint8")
